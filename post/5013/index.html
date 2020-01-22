@@ -1,4 +1,436 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 4.2.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png"><link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo-16x16.png"><link rel="mask-icon" href="/images/logo.svg" color="#222"><meta name="google-site-verification" content="6pvwoYNlJ2TUPO9dWGfKhBBanQwS321ImO5u7mIVBf0"><meta name="baidu-site-verification" content="5eS71i7r0L"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:new URL("https://w-blink.github.io").hostname,root:"/",scheme:"Gemini",version:"7.7.0",exturl:!1,sidebar:{position:"right",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!0,show_result:!0,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!0,pangu:!1,comments:{style:"tabs",active:"valine",storage:!0,lazyload:!1,nav:null,activeClass:"valine"},algolia:{appID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:1,unescape:!1,preload:!1},path:"search.xml",motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}}}</script><meta name="description" content="使用VMware安装docker的骚操作"><meta property="og:type" content="article"><meta property="og:title" content="WIN10家庭版docker+VMware安装"><meta property="og:url" content="https://w-blink.github.io/post/5013/index.html"><meta property="og:site_name" content="博客"><meta property="og:description" content="使用VMware安装docker的骚操作"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2019-09-13T05:35:24.000Z"><meta property="article:modified_time" content="2020-01-21T08:08:14.671Z"><meta property="article:author" content="霖"><meta property="article:tag" content="docker"><meta property="article:tag" content="VMware"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://w-blink.github.io/post/5013/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0}</script><title>WIN10家庭版docker+VMware安装 | 博客</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFD0BRJL9Q"></script><script>if(CONFIG.hostname===location.hostname){function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-ZFD0BRJL9Q")}</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?6d2dbb79858d63eba268a8b5001752e5# <app_id>";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container use-motion"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-meta"><div><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">博客</span><span class="logo-line-after"><i></i></span></a></div></div><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span><span class="toggle-line toggle-line-middle"></span><span class="toggle-line toggle-line-last"></span></div></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-fw fa-home"></i> 首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i> 关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i> 标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i> 归档</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i> 搜索</a></li></ul></nav><div class="site-search"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"> <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"></div></div><div class="search-pop-overlay"></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content"><div class="posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://w-blink.github.io/post/5013/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/uploads/avatar.jpg"><meta itemprop="name" content="霖"><meta itemprop="description" content="生命不息，折腾不止！"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="博客"></span><header class="post-header"><h2 class="post-title" itemprop="name headline"> WIN10家庭版docker+VMware安装</h2><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建时间：2019-09-13 13:35:24" itemprop="dateCreated datePublished" datetime="2019-09-13T13:35:24+08:00">2019-09-13</time></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span> <span class="post-meta-item-text">更新于</span> <time title="修改时间：2020-01-21 16:08:14" itemprop="dateModified" datetime="2020-01-21T16:08:14+08:00">2020-01-21</time></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E6%8A%98%E8%85%BEdocker/" itemprop="url" rel="index"><span itemprop="name">折腾docker</span></a></span></span><span id="/post/5013/" class="post-meta-item leancloud_visitors" data-flag-title="WIN10家庭版docker+VMware安装" title="阅读次数"><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span> <span class="post-meta-item-text">阅读次数：</span><span class="leancloud-visitors-count"></span></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-comment-o"></i></span> <span class="post-meta-item-text">Valine：</span><a title="valine" href="/post/5013/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/post/5013/" itemprop="commentCount"></span></a></span><div class="post-description">使用VMware安装docker的骚操作</div></div></header><div class="post-body" itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于windows10家庭版没有hyper-v,而docker需要虚拟机支持，所以正常windows10家庭版是无法使用docker安装包安装。但天无绝人之路，可以通过一些操作来实现。</p><h3 id="一些操作"><a href="#一些操作" class="headerlink" title="一些操作"></a>一些操作</h3><ul><li>购买windows10专业版，<del>土豪请出门右转，谢谢</del></li><li>弃坑windows，投入mac or linux的怀抱</li><li>手工开启hyper-v，不是正版，影响更新，hyper-v的性能。。。</li><li>使用docker toolbox安装</li></ul><h3 id="关于docker-toolbox"><a href="#关于docker-toolbox" class="headerlink" title="关于docker toolbox"></a>关于docker toolbox</h3><p>docker toolbox的原理是使用Visual box来代替hyper-v，从而实现docker的运行，因此docker toolbox没有VMware也是可以运行的，但如果你已经安装了VMware，那么Visual box和VMware之间的战争便愉快的开始了</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul><li>开启电脑的虚拟化(<a href="https://jingyan.baidu.com/article/574c52195b675c6c8d9dc138.html" target="_blank" rel="noopener">百度经验</a>)</li><li>安装并激活<a href="https://communities.vmware.com/thread/598748" target="_blank" rel="noopener">VMware</a>(一个<a href="https://jingyan.baidu.com/article/3f16e00321bbb12591c10304.html" target="_blank" rel="noopener">百度经验</a>的密钥：CG392-4PX5J-H816Z-HYZNG-PQRG2)</li><li>安装<a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">docker toolbox</a>，推荐装在D盘</li><li>下载docker的<a href="https://github.com/pecigonzalo/docker-machine-vmwareworkstation/releases/" target="_blank" rel="noopener">VMware驱动程序</a>，不安装</li></ul><h2 id="第一步：卸载Visual-box或VMware"><a href="#第一步：卸载Visual-box或VMware" class="headerlink" title="第一步：卸载Visual box或VMware"></a>第一步：卸载Visual box或VMware</h2><p>如果你选择的是卸载VMware，那么docker到这里就已经可用了，当然这不是本篇blog的目的，相信也不是你的目的，所以，卸载Visual box</p><h2 id="第二步：移动VMware驱动"><a href="#第二步：移动VMware驱动" class="headerlink" title="第二步：移动VMware驱动"></a>第二步：移动VMware驱动</h2><p>将之前下载的VMware驱动移动到docker toolbox的安装目录下，即与docker.exe处于同一目录</p><h2 id="第三步：复制boot2docker-iso"><a href="#第三步：复制boot2docker-iso" class="headerlink" title="第三步：复制boot2docker.iso"></a>第三步：复制boot2docker.iso</h2><ul><li>复制boot2docker.iso</li><li>在当前目录下建立machine文件夹，进入machine文件夹后建立cache文件夹</li><li>将boot2docker.iso复制到cache文件夹内</li><li>ps: machine文件夹可以任意命名，cache文件夹不能任意</li></ul><h2 id="第四步：建立其他文件夹"><a href="#第四步：建立其他文件夹" class="headerlink" title="第四步：建立其他文件夹"></a>第四步：建立其他文件夹</h2><p>docker默认是将镜像和虚拟机往C盘里存，<del>都惦记着我的C盘，你看它多么的弱小，无助。。。</del>，所以我们要改一下</p><ul><li>在machine文件夹内（与cache同级）建立machines文件夹用于保存虚拟机</li><li>进入machines文件夹，建立dev文件夹，dev是你虚拟机的名字</li><li>将machine整个文件夹搬到你想要的位置</li><li>ps：machines文件夹可任意命名</li></ul><h2 id="第五步：修改环境变量"><a href="#第五步：修改环境变量" class="headerlink" title="第五步：修改环境变量"></a>第五步：修改环境变量</h2><ul><li>资源管理器&gt;此电脑右键&gt;属性&gt;高级系统设置&gt;环境变量</li><li>添加或修改如下环境变量</li><li>ps:machine、machines、dev与之前你命的名相对应<table><thead><tr><th>变量名</th><th>变量值</th></tr></thead><tbody><tr><td>DOCKER_CERT_PATH</td><td>你将machine搬到的位置（如D:）\machine\machines\dev</td></tr><tr><td>DOCKER_MACHINE_NAME</td><td>dev</td></tr><tr><td>DOCKER_TOOLBOX_INSTALL_PATH</td><td>docker toolbox安装目录</td></tr><tr><td>MACHINE_STORAGE_PATH</td><td>你将machine搬到的位置（如D:）\machine</td></tr></tbody></table></li></ul><h2 id="第六步：建立docker虚拟机"><a href="#第六步：建立docker虚拟机" class="headerlink" title="第六步：建立docker虚拟机"></a>第六步：建立docker虚拟机</h2><p>打开powershell，输入如下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine create --driver=vmwareworkstation dev</span><br></pre></td></tr></table></figure><p>ps:dev与之前你命的名相对应</p><h2 id="第七步：查看docker虚拟机信息"><a href="#第七步：查看docker虚拟机信息" class="headerlink" title="第七步：查看docker虚拟机信息"></a>第七步：查看docker虚拟机信息</h2><p>打开powershell，输入如下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ls</span><br></pre></td></tr></table></figure><p>至此，你的docker已经可以安装好了，推荐配合git bash食用<br>ps:如果你的VMware经常卡死、未响应，那么推荐打开虚拟打印机，编辑&gt;首选项(ctrl+p)&gt;设备&gt;启用虚拟打印机</p></div><div><ul class="post-copyright"><li class="post-copyright-author"> <strong>本文作者：</strong> 霖</li><li class="post-copyright-link"> <strong>本文链接：</strong> <a href="https://w-blink.github.io/post/5013/" title="WIN10家庭版docker+VMware安装">https://w-blink.github.io/post/5013/</a></li><li class="post-copyright-license"> <strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"> <a href="/tags/docker/" rel="tag"># docker</a> <a href="/tags/VMware/" rel="tag"># VMware</a></div><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"> <a href="/post/47162/" rel="next" title="WIN10+docker+VMware安装MySQL8.0">WIN10+docker+VMware安装MySQL8.0<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div><div class="comments" id="valine-comments"></div><script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/logo-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/logo-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="6pvwoYNlJ2TUPO9dWGfKhBBanQwS321ImO5u7mIVBf0">
+  <meta name="baidu-site-verification" content="5eS71i7r0L">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://w-blink.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="使用VMware安装docker的骚操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WIN10家庭版docker+VMware安装">
+<meta property="og:url" content="https://w-blink.github.io/post/5013/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="使用VMware安装docker的骚操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-13T05:35:24.000Z">
+<meta property="article:modified_time" content="2020-01-21T08:08:14.671Z">
+<meta property="article:author" content="霖">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="VMware">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://w-blink.github.io/post/5013/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>WIN10家庭版docker+VMware安装 | 博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFD0BRJL9Q"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZFD0BRJL9Q');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6d2dbb79858d63eba268a8b5001752e5# <app_id>";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://w-blink.github.io/post/5013/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="霖">
+      <meta itemprop="description" content="生命不息，折腾不止！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          WIN10家庭版docker+VMware安装
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-13 13:35:24" itemprop="dateCreated datePublished" datetime="2019-09-13T13:35:24+08:00">2019-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-21 16:08:14" itemprop="dateModified" datetime="2020-01-21T16:08:14+08:00">2020-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%98%E8%85%BEdocker/" itemprop="url" rel="index">
+                    <span itemprop="name">折腾docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/post/5013/" class="post-meta-item leancloud_visitors" data-flag-title="WIN10家庭版docker+VMware安装" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/post/5013/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/post/5013/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">使用VMware安装docker的骚操作</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于windows10家庭版没有hyper-v,而docker需要虚拟机支持，所以正常windows10家庭版是无法使用docker安装包安装。但天无绝人之路，可以通过一些操作来实现。</p>
+<h3 id="一些操作"><a href="#一些操作" class="headerlink" title="一些操作"></a>一些操作</h3><ul>
+<li>购买windows10专业版，<del>土豪请出门右转，谢谢</del></li>
+<li>弃坑windows，投入mac or linux的怀抱</li>
+<li>手工开启hyper-v，不是正版，影响更新，hyper-v的性能。。。</li>
+<li>使用docker toolbox安装</li>
+</ul>
+<h3 id="关于docker-toolbox"><a href="#关于docker-toolbox" class="headerlink" title="关于docker toolbox"></a>关于docker toolbox</h3><p>docker toolbox的原理是使用Visual box来代替hyper-v，从而实现docker的运行，因此docker toolbox没有VMware也是可以运行的，但如果你已经安装了VMware，那么Visual box和VMware之间的战争便愉快的开始了</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>开启电脑的虚拟化(<a href="https://jingyan.baidu.com/article/574c52195b675c6c8d9dc138.html" target="_blank" rel="noopener">百度经验</a>)</li>
+<li>安装并激活<a href="https://communities.vmware.com/thread/598748" target="_blank" rel="noopener">VMware</a>(一个<a href="https://jingyan.baidu.com/article/3f16e00321bbb12591c10304.html" target="_blank" rel="noopener">百度经验</a>的密钥：CG392-4PX5J-H816Z-HYZNG-PQRG2)</li>
+<li>安装<a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">docker toolbox</a>，推荐装在D盘</li>
+<li>下载docker的<a href="https://github.com/pecigonzalo/docker-machine-vmwareworkstation/releases/" target="_blank" rel="noopener">VMware驱动程序</a>，不安装</li>
+</ul>
+<h2 id="第一步：卸载Visual-box或VMware"><a href="#第一步：卸载Visual-box或VMware" class="headerlink" title="第一步：卸载Visual box或VMware"></a>第一步：卸载Visual box或VMware</h2><p>如果你选择的是卸载VMware，那么docker到这里就已经可用了，当然这不是本篇blog的目的，相信也不是你的目的，所以，卸载Visual box</p>
+<h2 id="第二步：移动VMware驱动"><a href="#第二步：移动VMware驱动" class="headerlink" title="第二步：移动VMware驱动"></a>第二步：移动VMware驱动</h2><p>将之前下载的VMware驱动移动到docker toolbox的安装目录下，即与docker.exe处于同一目录</p>
+<h2 id="第三步：复制boot2docker-iso"><a href="#第三步：复制boot2docker-iso" class="headerlink" title="第三步：复制boot2docker.iso"></a>第三步：复制boot2docker.iso</h2><ul>
+<li>复制boot2docker.iso</li>
+<li>在当前目录下建立machine文件夹，进入machine文件夹后建立cache文件夹</li>
+<li>将boot2docker.iso复制到cache文件夹内</li>
+<li>ps: machine文件夹可以任意命名，cache文件夹不能任意</li>
+</ul>
+<h2 id="第四步：建立其他文件夹"><a href="#第四步：建立其他文件夹" class="headerlink" title="第四步：建立其他文件夹"></a>第四步：建立其他文件夹</h2><p>docker默认是将镜像和虚拟机往C盘里存，<del>都惦记着我的C盘，你看它多么的弱小，无助。。。</del>，所以我们要改一下</p>
+<ul>
+<li>在machine文件夹内（与cache同级）建立machines文件夹用于保存虚拟机</li>
+<li>进入machines文件夹，建立dev文件夹，dev是你虚拟机的名字</li>
+<li>将machine整个文件夹搬到你想要的位置</li>
+<li>ps：machines文件夹可任意命名</li>
+</ul>
+<h2 id="第五步：修改环境变量"><a href="#第五步：修改环境变量" class="headerlink" title="第五步：修改环境变量"></a>第五步：修改环境变量</h2><ul>
+<li>资源管理器&gt;此电脑右键&gt;属性&gt;高级系统设置&gt;环境变量</li>
+<li>添加或修改如下环境变量</li>
+<li>ps:machine、machines、dev与之前你命的名相对应<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DOCKER_CERT_PATH</td>
+<td>你将machine搬到的位置（如D:）\machine\machines\dev</td>
+</tr>
+<tr>
+<td>DOCKER_MACHINE_NAME</td>
+<td>dev</td>
+</tr>
+<tr>
+<td>DOCKER_TOOLBOX_INSTALL_PATH</td>
+<td>docker toolbox安装目录</td>
+</tr>
+<tr>
+<td>MACHINE_STORAGE_PATH</td>
+<td>你将machine搬到的位置（如D:）\machine</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="第六步：建立docker虚拟机"><a href="#第六步：建立docker虚拟机" class="headerlink" title="第六步：建立docker虚拟机"></a>第六步：建立docker虚拟机</h2><p>打开powershell，输入如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine create --driver=vmwareworkstation dev</span><br></pre></td></tr></table></figure>
+<p>ps:dev与之前你命的名相对应</p>
+<h2 id="第七步：查看docker虚拟机信息"><a href="#第七步：查看docker虚拟机信息" class="headerlink" title="第七步：查看docker虚拟机信息"></a>第七步：查看docker虚拟机信息</h2><p>打开powershell，输入如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ls</span><br></pre></td></tr></table></figure>
+
+<p>至此，你的docker已经可以安装好了，推荐配合git bash食用<br>ps:如果你的VMware经常卡死、未响应，那么推荐打开虚拟打印机，编辑&gt;首选项(ctrl+p)&gt;设备&gt;启用虚拟打印机</p>
+
+    </div>
+
+    
+    
+    
+        <!--Add-->
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>霖
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://w-blink.github.io/post/5013/" title="WIN10家庭版docker+VMware安装">https://w-blink.github.io/post/5013/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/VMware/" rel="tag"># VMware</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/post/47162/" rel="next" title="WIN10+docker+VMware安装MySQL8.0">
+      WIN10+docker+VMware安装MySQL8.0 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
   window.addEventListener('tabs:register', () => {
     let activeClass = CONFIG.comments.activeClass;
     if (CONFIG.comments.storage) {
@@ -18,7 +450,174 @@
       localStorage.setItem('comments_active', commentClass);
     });
   }
-</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span><span class="toggle-line toggle-line-middle"></span><span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc"> 文章目录</li><li class="sidebar-nav-overview"> 站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些操作"><span class="nav-number">1.1.</span> <span class="nav-text">一些操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于docker-toolbox"><span class="nav-number">1.2.</span> <span class="nav-text">关于docker toolbox</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：卸载Visual-box或VMware"><span class="nav-number">3.</span> <span class="nav-text">第一步：卸载Visual box或VMware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：移动VMware驱动"><span class="nav-number">4.</span> <span class="nav-text">第二步：移动VMware驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：复制boot2docker-iso"><span class="nav-number">5.</span> <span class="nav-text">第三步：复制boot2docker.iso</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：建立其他文件夹"><span class="nav-number">6.</span> <span class="nav-text">第四步：建立其他文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：修改环境变量"><span class="nav-number">7.</span> <span class="nav-text">第五步：修改环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步：建立docker虚拟机"><span class="nav-number">8.</span> <span class="nav-text">第六步：建立docker虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七步：查看docker虚拟机信息"><span class="nav-number">9.</span> <span class="nav-text">第七步：查看docker虚拟机信息</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" alt="霖" src="/uploads/avatar.jpg"><p class="site-author-name" itemprop="name">霖</p><div class="site-description" itemprop="description">生命不息，折腾不止！</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">3</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <a href="/categories/"><span class="site-state-item-count">2</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"> <a href="/tags/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/w-blink" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;w-blink" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:mine163emails@163.com" title="E-Mail → mailto:mine163emails@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span></div><div class="cc-license motion-element" itemprop="license"> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright"> &copy; <span itemprop="copyrightYear">2020</span><span class="with-love"><i class="fa fa-user"></i></span> <span class="author" itemprop="copyrightHolder">霖</span></div></div></footer></div><script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script><script src="/lib/velocity/velocity.min.js"></script><script src="/lib/velocity/velocity.ui.min.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script src="/js/local-search.js"></script><script>
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些操作"><span class="nav-number">1.1.</span> <span class="nav-text">一些操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于docker-toolbox"><span class="nav-number">1.2.</span> <span class="nav-text">关于docker toolbox</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：卸载Visual-box或VMware"><span class="nav-number">3.</span> <span class="nav-text">第一步：卸载Visual box或VMware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：移动VMware驱动"><span class="nav-number">4.</span> <span class="nav-text">第二步：移动VMware驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：复制boot2docker-iso"><span class="nav-number">5.</span> <span class="nav-text">第三步：复制boot2docker.iso</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：建立其他文件夹"><span class="nav-number">6.</span> <span class="nav-text">第四步：建立其他文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：修改环境变量"><span class="nav-number">7.</span> <span class="nav-text">第五步：修改环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步：建立docker虚拟机"><span class="nav-number">8.</span> <span class="nav-text">第六步：建立docker虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七步：查看docker虚拟机信息"><span class="nav-number">9.</span> <span class="nav-text">第七步：查看docker虚拟机信息</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="霖"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">霖</p>
+  <div class="site-description" itemprop="description">生命不息，折腾不止！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/w-blink" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;w-blink" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mine163emails@163.com" title="E-Mail → mailto:mine163emails@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">霖</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
@@ -44,4 +643,10 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
     });
   }, window.Valine);
 });
-</script><script type="text/javascript" src="/js/custom.js"></script></body></html>
+</script>
+
+
+  <!--Add-->
+    <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>
