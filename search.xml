@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo+NexT个人博客升级遇到的坑</title>
+    <url>/post/38257/</url>
+    <content><![CDATA[<h2 id="写在前面的"><a href="#写在前面的" class="headerlink" title="写在前面的"></a>写在前面的</h2><p>你们可爱的博主大人又回来继续更新博客了，中间才3个月没有更新，在正常不过了，毕竟我可是要成为年更区、与作者比命长分舵的一只鸽子（大误）。好了，言归正传，本次带来的是我的个人博客的更新以及遇到的各种坑，为了防止我以后再次踩坑<del>（虽然这是必定的）</del>，所以特此留念。</p>
+<h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><p>为了让没有经历过本博客黑暗时代的童鞋们对本站有所了解，所以这里将更新或添加的内容列举一下下。</p>
+<ol>
+<li>Hexo版本更新为最新版</li>
+<li>NexT主题更新为最新版</li>
+<li>添加头像旋转</li>
+<li>添加Valine评论</li>
+<li>将自定义<del>（抄袭）</del>的版权信息修改为官方的版权信息</li>
+<li>为官方的版权信息添加地址复制按钮</li>
+<li>换用靠谱的阅读人数统计</li>
+<li>踩坑&amp;填坑😭 </li>
+</ol>
+<p>好吧，这和从头捣鼓一遍好像差不多。。。  </p>
+<h2 id="Hexo版本更新为最新版"><a href="#Hexo版本更新为最新版" class="headerlink" title="Hexo版本更新为最新版"></a>Hexo版本更新为最新版</h2><p>万恶之源就是这一步，如果不是我想更新Hexo，后面也不会由这么多事，更新很简单,直接到<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo官网</a>找最新版安装教程即可。nodejs安装命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>然后坑就来了，Windows10下无法配置Hexo的环境变量，直接敲Hexo会显示如下错误：<br><img data-src="1.png" alt="在此系统上禁止运行脚本"><br>神奇Windows禁止运行脚本，网上有解除这个限制的方法，但我懒得弄了，所以每次使用Hexo需要先敲npx，用npx来调用Hexo。Linux和Mac似乎没有这个坑。。。</p>
+<h2 id="NexT主题更新为最新版"><a href="#NexT主题更新为最新版" class="headerlink" title="NexT主题更新为最新版"></a>NexT主题更新为最新版</h2><p>Hexo升级了，主题当然也要升级，我用的NexT，所以区官网找安装方法，如下图：<br><img data-src="2.png" alt="安装NexT方法"><br>然后，你会发现NexT依旧是6.0.0版本，为什么呢？去这个github仓库看看就知道了，如下图：<br><img data-src="3.png" alt="仓库搬迁公告"><br>对，NexT仓库搬迁了，然而中文官网的地址并没有更新，我之前配了半小时的内容又作废了。。。<br>最新版的安装命令如下（在Hexo的目录下运行）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加头像旋转"><a href="#添加头像旋转" class="headerlink" title="添加头像旋转"></a>添加头像旋转</h2><p>最新版NexT已经支持头像旋转了，直接在<strong>主题配置文件</strong>中搜索<em>avatar</em>即可找到头像设置<br><img data-src="4.png" alt="头像设置"><br>当然老版那种自立门户的方法也是可以的，百度一搜都是，这里不粘贴了</p>
+<h2 id="添加Valine评论"><a href="#添加Valine评论" class="headerlink" title="添加Valine评论"></a>添加Valine评论</h2><p>最新版NexT评论的添加方法也有所不同，需要先在<strong>主题配置文件</strong>中搜索<em>comments</em>，在<em>active</em>里填上<em>valine</em>，如下图：<br><img data-src="5.png" alt="comments设置"><br>然后再搜索<em>valine</em>把LeanCloud上的app_id和app_key填上，<em>enable</em>设为true，剩下的就是设置了，我的设置如下：<br><img data-src="6.png" alt="valine设置"><br><strong>注意：</strong>LeanCloud上的安全域名记得填上自己的博客地址，不然评论只有localhost发的能记到LeadCloud上。。。别问我是怎么知道的</p>
+<h2 id="将自定义（抄袭）的版权信息修改为官方的版权信息"><a href="#将自定义（抄袭）的版权信息修改为官方的版权信息" class="headerlink" title="将自定义（抄袭）的版权信息修改为官方的版权信息"></a>将自定义<del>（抄袭）</del>的版权信息修改为官方的版权信息</h2><p>以前的版权信息是从一位大佬那<del>抄</del>借来的，但最新版NexT自带了版权信息，所以现在又改成NexT的版权信息了，毕竟东西不要借（chao)太(tai)久(duo)，现在的版权信息如下：<br><img data-src="7.png" alt="版权信息"><br>这个设置简单，直接在<strong>主题配置文件</strong>中搜索<em>creative_commons</em>自己调。<br>你问我那个复制按钮哪来的，当然是<del>抄</del>借鉴官方的源代码自己添的了。  </p>
+<h2 id="为官方的版权信息添加地址复制按钮"><a href="#为官方的版权信息添加地址复制按钮" class="headerlink" title="为官方的版权信息添加地址复制按钮"></a>为官方的版权信息添加地址复制按钮</h2><p>嘿嘿，<del>读书人</del>程序员的事，怎么能叫抄呢，应该叫借鉴~~借鉴~~<br>NexT官方支持代码复制按钮了，所以为了风格统一，需要给我的Copyright也加上复制按钮，这个配置比较麻烦，步骤如下：</p>
+<h3 id="第一步-新建按钮样式"><a href="#第一步-新建按钮样式" class="headerlink" title="第一步 新建按钮样式"></a>第一步 新建按钮样式</h3><p>先在themes\next\source\css下新建_custom文件夹，然后在文件夹里新建custom.styl文件，这个文件里的内容如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.copy-link-btn</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: $black-dim;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">font-weight</span>: $font-weight-bolder;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.6</span>;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">2px</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: opacity .<span class="number">3s</span> ease-in-out;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    disable-user-select();</span><br><span class="line"></span><br><span class="line">    if (hexo-config('codeblock.copy_button.style') == 'flat') &#123;</span><br><span class="line">        <span class="selector-tag">background</span>: <span class="selector-tag">white</span>;</span><br><span class="line">        <span class="selector-tag">border</span>: 0;</span><br><span class="line">        font-size: $font-size-smaller;</span><br><span class="line">        <span class="selector-tag">right</span>: 0;</span><br><span class="line">        <span class="selector-tag">top</span>: 0;</span><br><span class="line">    &#125; else if (hexo-config('codeblock.copy_button.style') == 'mac') &#123;</span><br><span class="line">        <span class="selector-tag">color</span>: <span class="selector-tag">white</span>;</span><br><span class="line">        <span class="selector-tag">font-size</span>: 14<span class="selector-tag">px</span>;</span><br><span class="line">        <span class="selector-tag">right</span>: 0;</span><br><span class="line">        <span class="selector-tag">top</span>: 2<span class="selector-tag">px</span>;</span><br><span class="line">    &#125; <span class="selector-tag">else</span> &#123;</span><br><span class="line">        <span class="attribute">background-color</span>: $gainsboro;</span><br><span class="line">        <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(#fcfcfc, $gainsboro);</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#d5d5d5</span>;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: $font-size-smaller;</span><br><span class="line">        <span class="attribute">right</span>: <span class="number">4px</span>;</span><br><span class="line">        <span class="attribute">top</span>: <span class="number">8px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>官方CSS里借鉴的~~，当然如果你要自定义主题颜色什么的可以在这个文件里自己加</p>
+<h3 id="第二步-导入这个文件"><a href="#第二步-导入这个文件" class="headerlink" title="第二步 导入这个文件"></a>第二步 导入这个文件</h3><p>在themes\next\source\css\main.styl文件（_custom文件夹那层）最后添加这几行代码让custom.styl导入：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// Add Custom Layer</span><br><span class="line">// --------------------------------------------------</span><br><span class="line"><span class="keyword">@import</span> <span class="string">"_custom/custom.styl"</span> if (hexo-config(<span class="string">'custom.css'</span>));</span><br></pre></td></tr></table></figure>
+<p>喜欢自己起名的宝宝们注意这里的路径要写对哟</p>
+<h3 id="第三步-编辑JS"><a href="#第三步-编辑JS" class="headerlink" title="第三步 编辑JS"></a>第三步 编辑JS</h3><p>先在themes\next\source\js下新建custom.js文件，内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> link = <span class="built_in">document</span>.querySelector(<span class="string">'li.post-copyright-link'</span>);</span><br><span class="line">    link.insertAdjacentHTML(<span class="string">'beforeend'</span>, <span class="string">'&lt;div class="copy-link-btn"&gt;&lt;i class="fa fa-clipboard"&gt;&lt;/i&gt;&lt;/div&gt;'</span>);</span><br><span class="line">    <span class="keyword">var</span> button = link.querySelector(<span class="string">'.copy-link-btn'</span>);</span><br><span class="line">    button.addEventListener(<span class="string">'click'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">var</span> code = link.querySelector(<span class="string">'a'</span>).text;</span><br><span class="line">        <span class="keyword">var</span> ta = <span class="built_in">document</span>.createElement(<span class="string">'textarea'</span>);</span><br><span class="line">        ta.style.top = <span class="built_in">window</span>.scrollY + <span class="string">'px'</span>; <span class="comment">// Prevent page scrolling</span></span><br><span class="line">        ta.style.position = <span class="string">'absolute'</span>;</span><br><span class="line">        ta.style.opacity = <span class="string">'0'</span>;</span><br><span class="line">        ta.readOnly = <span class="literal">true</span>;</span><br><span class="line">        ta.value = code;</span><br><span class="line">        <span class="built_in">document</span>.body.append(ta);</span><br><span class="line">        <span class="keyword">const</span> selection = <span class="built_in">document</span>.getSelection();</span><br><span class="line">        <span class="keyword">const</span> selected = selection.rangeCount &gt; <span class="number">0</span> ? selection.getRangeAt(<span class="number">0</span>) : <span class="literal">false</span>;</span><br><span class="line">        ta.select();</span><br><span class="line">        ta.setSelectionRange(<span class="number">0</span>, code.length);</span><br><span class="line">        ta.readOnly = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">var</span> result = <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</span><br><span class="line">        link.querySelector(<span class="string">'i'</span>).className = result ? <span class="string">'fa fa-check'</span> : <span class="string">'fa fa-times'</span>;</span><br><span class="line">        ta.blur(); <span class="comment">// For iOS</span></span><br><span class="line">        <span class="keyword">if</span> (selected) &#123;</span><br><span class="line">            selection.removeAllRanges();</span><br><span class="line">            selection.addRange(selected);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(ta);</span><br><span class="line">    &#125;);</span><br><span class="line">    button.addEventListener(<span class="string">'mouseleave'</span>, event =&gt; &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            event.target.querySelector(<span class="string">'i'</span>).className = <span class="string">'fa fa-clipboard'</span>;</span><br><span class="line">        &#125;, <span class="number">300</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>官方JS里借鉴的~~<br>注意这里插入按钮的CSS样式名字要与之前custom.styl里的CSS样式名字统一</p>
+<h3 id="第四步-导入JS"><a href="#第四步-导入JS" class="headerlink" title="第四步 导入JS"></a>第四步 导入JS</h3><p>我选择的导入方式比较麻烦，不过我喜欢<del>~</del><br>在themes\next\layout下新建custom-scripts.swig文件，内容如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"/js/custom.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>然后再在themes\next\layout_layout.swig的最后<strong></body></html>之前</strong>添加代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!--Add--&gt;</span><br><span class="line">&#123;%- <span class="keyword">if</span> theme.custom.javascript %&#125;</span><br><span class="line">  &#123;% include <span class="string">'custom-scripts.swig'</span> %&#125;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在<strong>主题配置文件</strong>最后追加代码</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"># Add</span><br><span class="line"># Add Custom CSS &amp; JavaScript</span><br><span class="line">custom:</span><br><span class="line">  css: true </span><br><span class="line">  javascript: true</span><br></pre></td></tr></table></figure>
+<p>弄完收工。<br>具体代码功能就是将运行custom-scripts.swig给控制接口暴露出来，然后设置为true，使custom-scripts.swig运行，而custom-scripts.swig的功能就是将custom.js添加到html的body里。</p>
+<p>这样配置的好处是可以自己编辑CSS和Javascript然后导入，可玩性更高，不过要自己注意避免冲突哟<del>~</del></p>
+<h2 id="换用靠谱的阅读人数统计"><a href="#换用靠谱的阅读人数统计" class="headerlink" title="换用靠谱的阅读人数统计"></a>换用靠谱的阅读人数统计</h2><p>这个简单，使用Valine自带的人数统计，然后没了。。。</p>
+]]></content>
+      <categories>
+        <category>小站风云</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WIN10+docker+VMware安装MySQL8.0</title>
+    <url>/post/47162/</url>
+    <content><![CDATA[<h2 id="写在前面的"><a href="#写在前面的" class="headerlink" title="写在前面的"></a>写在前面的</h2><p>docker对windows真的很不友好，所以早日脱坑，linux大法好<br>如果你还没有安装好docker，而你又刚好想用VMware来代替hyper-v或Visual box，那么推荐阅读我的<a href="https://wbink.github.io/2019/09/13/WIN10家庭版docker-vmware安装/#more" target="_blank" rel="noopener">这篇博文</a></p>
+<h2 id="建立MySQL数据文件夹"><a href="#建立MySQL数据文件夹" class="headerlink" title="建立MySQL数据文件夹"></a>建立MySQL数据文件夹</h2><p>在电脑里选一块风水宝地，建立一个文件夹用于保存MySQL的数据，名字最好是英文的，我建立了MySQL文件夹<br><img data-src="2.png" alt="" title="MySQL文件夹"></p>
+<p>然后在文件夹里建立三个文件夹如下，如果你自己命名，请注意之后的bash命令也要做相应修改<br><img data-src="3.png" alt="" title="MySQL文件夹内容"></p>
+<p>文件夹作用如下<br>|文件夹名|作用|<br>|-|-|<br>|conf|保存自己的一些设置，比如加密规则|<br>|data|保存数据库数据|<br>|logs|保存数据库日志(好像有点问题)|</p>
+<p>然后在conf文件夹里建立my.cnf文件，内容如下(MySQL8的默认加密方式改变了，所以要修改下)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]  </span><br><span class="line">lower_case_table_names&#x3D;1  </span><br><span class="line">default_authentication_plugin&#x3D; mysql_native_password</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vmware的设置"><a href="#Vmware的设置" class="headerlink" title="Vmware的设置"></a>Vmware的设置</h2><p>打开VMware&gt;打开docker虚拟机&gt;编辑虚拟机设置&gt;选项&gt;共享文件夹&gt;添加<br><img data-src="1.png" alt="" title="开启共享文件夹"><br>将MySQL数据希望保存的位置添加进去共享给虚拟机(即之前的MySQL文件夹)</p>
+<h2 id="建立MySQL实例"><a href="#建立MySQL实例" class="headerlink" title="建立MySQL实例"></a>建立MySQL实例</h2><p>打开git bash(<strong>不要用powershell和cmd！不要用powershell和cmd！不要用powershell和cmd！</strong>)，输入如下命令运行docker</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-machine start *你的虚拟机名*</span><br></pre></td></tr></table></figure>
+<p><img data-src="4.png" alt="" title="开启docker"></p>
+<p>激活</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-machine env *你的虚拟机名*</span><br></pre></td></tr></table></figure>
+<p><img data-src="5.png" alt="" title="激活docker"><br>这时，系统会提示你用另一个命令来激活，copy后输入回车即可，我这里是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$eval</span> $(<span class="string">"D:\Program Files\Docker Toolbox\docker-machine.exe"</span> env dev)</span><br></pre></td></tr></table></figure>
+
+<p>下载MySQL(<em>下载慢的宝宝请先换源</em>)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+<p>我这里已经下载好了，不演示了</p>
+<p>建立实例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=*你的root密码* \</span><br><span class="line">-v //mnt/hgfs/ProgramData/MySQL/data:/var/lib/mysql:rw \</span><br><span class="line">-v //mnt/hgfs/ProgramData/MySQL/logs:/var/<span class="built_in">log</span>/mysql:rw \</span><br><span class="line">-v //mnt/hgfs/ProgramData/MySQL/conf/my.cnf:/etc/mysql/conf.d/my.cnf:rw \</span><br><span class="line">--name mysql \</span><br><span class="line">--restart=always \</span><br><span class="line">-d mysql</span><br></pre></td></tr></table></figure>
+<p><strong>重点来了</strong>，这些命令的冒号左边是你电脑的实际接口和路径，右边是docker虚拟机的接口和路径，你电脑的共享文件夹被挂载到了虚拟机的//mnt/hgfs/下(双斜杠不能丢，不然git bash会将路径转译导致虚拟机不识别)，所以你只要修改//mnt/hgfs到MySQL(如果你没改名)之间的内容为你的电脑上MySQL文件夹的绝对路径即可(<strong>去掉盘符和MySQL</strong>)，比如，我的MySQL文件夹的绝对路径是D:\ProgramData\MySQL，将盘符和MySQL去掉是\ProgramData\，然后将\改为/填进去就可以了。<br>如果你很不幸，共享文件夹没有挂载到//mnt/hgfs/下，那么请ssh登录虚拟机，用whereis命令找出来即可了。<br>如果你的MySQL启动不了，请将my.cnf的文件映射去掉，可能是我的配置文件的锅，请自己写一下。</p>
+<h2 id="ssh登录使用"><a href="#ssh登录使用" class="headerlink" title="ssh登录使用"></a>ssh登录使用</h2><p>输入命令登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-machine ssh *你的虚拟机名*</span><br></pre></td></tr></table></figure>
+
+<p>输入命令进入MySQL环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mysql bash</span><br></pre></td></tr></table></figure>
+
+<p>修改加密方式和root密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'*你的root密码*'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>退出ctrl+d，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，你的mysql8.0就可以愉快的使用了。</p>
+]]></content>
+      <categories>
+        <category>折腾docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>VMware</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WIN10家庭版docker+VMware安装</title>
+    <url>/post/5013/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于windows10家庭版没有hyper-v,而docker需要虚拟机支持，所以正常windows10家庭版是无法使用docker安装包安装。但天无绝人之路，可以通过一些操作来实现。</p>
+<h3 id="一些操作"><a href="#一些操作" class="headerlink" title="一些操作"></a>一些操作</h3><ul>
+<li>购买windows10专业版，<del>土豪请出门右转，谢谢</del></li>
+<li>弃坑windows，投入mac or linux的怀抱</li>
+<li>手工开启hyper-v，不是正版，影响更新，hyper-v的性能。。。</li>
+<li>使用docker toolbox安装</li>
+</ul>
+<h3 id="关于docker-toolbox"><a href="#关于docker-toolbox" class="headerlink" title="关于docker toolbox"></a>关于docker toolbox</h3><p>docker toolbox的原理是使用Visual box来代替hyper-v，从而实现docker的运行，因此docker toolbox没有VMware也是可以运行的，但如果你已经安装了VMware，那么Visual box和VMware之间的战争便愉快的开始了</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>开启电脑的虚拟化(<a href="https://jingyan.baidu.com/article/574c52195b675c6c8d9dc138.html" target="_blank" rel="noopener">百度经验</a>)</li>
+<li>安装并激活<a href="https://communities.vmware.com/thread/598748" target="_blank" rel="noopener">VMware</a>(一个<a href="https://jingyan.baidu.com/article/3f16e00321bbb12591c10304.html" target="_blank" rel="noopener">百度经验</a>的密钥：CG392-4PX5J-H816Z-HYZNG-PQRG2)</li>
+<li>安装<a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">docker toolbox</a>，推荐装在D盘</li>
+<li>下载docker的<a href="https://github.com/pecigonzalo/docker-machine-vmwareworkstation/releases/" target="_blank" rel="noopener">VMware驱动程序</a>，不安装</li>
+</ul>
+<h2 id="第一步：卸载Visual-box或VMware"><a href="#第一步：卸载Visual-box或VMware" class="headerlink" title="第一步：卸载Visual box或VMware"></a>第一步：卸载Visual box或VMware</h2><p>如果你选择的是卸载VMware，那么docker到这里就已经可用了，当然这不是本篇blog的目的，相信也不是你的目的，所以，卸载Visual box</p>
+<h2 id="第二步：移动VMware驱动"><a href="#第二步：移动VMware驱动" class="headerlink" title="第二步：移动VMware驱动"></a>第二步：移动VMware驱动</h2><p>将之前下载的VMware驱动移动到docker toolbox的安装目录下，即与docker.exe处于同一目录</p>
+<h2 id="第三步：复制boot2docker-iso"><a href="#第三步：复制boot2docker-iso" class="headerlink" title="第三步：复制boot2docker.iso"></a>第三步：复制boot2docker.iso</h2><ul>
+<li>复制boot2docker.iso</li>
+<li>在当前目录下建立machine文件夹，进入machine文件夹后建立cache文件夹</li>
+<li>将boot2docker.iso复制到cache文件夹内</li>
+<li>ps: machine文件夹可以任意命名，cache文件夹不能任意</li>
+</ul>
+<h2 id="第四步：建立其他文件夹"><a href="#第四步：建立其他文件夹" class="headerlink" title="第四步：建立其他文件夹"></a>第四步：建立其他文件夹</h2><p>docker默认是将镜像和虚拟机往C盘里存，<del>都惦记着我的C盘，你看它多么的弱小，无助。。。</del>，所以我们要改一下</p>
+<ul>
+<li>在machine文件夹内（与cache同级）建立machines文件夹用于保存虚拟机</li>
+<li>进入machines文件夹，建立dev文件夹，dev是你虚拟机的名字</li>
+<li>将machine整个文件夹搬到你想要的位置</li>
+<li>ps：machines文件夹可任意命名</li>
+</ul>
+<h2 id="第五步：修改环境变量"><a href="#第五步：修改环境变量" class="headerlink" title="第五步：修改环境变量"></a>第五步：修改环境变量</h2><ul>
+<li>资源管理器&gt;此电脑右键&gt;属性&gt;高级系统设置&gt;环境变量</li>
+<li>添加或修改如下环境变量</li>
+<li>ps:machine、machines、dev与之前你命的名相对应<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>变量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DOCKER_CERT_PATH</td>
+<td>你将machine搬到的位置（如D:）\machine\machines\dev</td>
+</tr>
+<tr>
+<td>DOCKER_MACHINE_NAME</td>
+<td>dev</td>
+</tr>
+<tr>
+<td>DOCKER_TOOLBOX_INSTALL_PATH</td>
+<td>docker toolbox安装目录</td>
+</tr>
+<tr>
+<td>MACHINE_STORAGE_PATH</td>
+<td>你将machine搬到的位置（如D:）\machine</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="第六步：建立docker虚拟机"><a href="#第六步：建立docker虚拟机" class="headerlink" title="第六步：建立docker虚拟机"></a>第六步：建立docker虚拟机</h2><p>打开powershell，输入如下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-machine create --driver=vmwareworkstation dev</span><br></pre></td></tr></table></figure>
+<p>ps:dev与之前你命的名相对应</p>
+<h2 id="第七步：查看docker虚拟机信息"><a href="#第七步：查看docker虚拟机信息" class="headerlink" title="第七步：查看docker虚拟机信息"></a>第七步：查看docker虚拟机信息</h2><p>打开powershell，输入如下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-machine ls</span><br></pre></td></tr></table></figure>
+
+<p>至此，你的docker已经可以安装好了，推荐配合git bash食用<br>ps:如果你的VMware经常卡死、未响应，那么推荐打开虚拟打印机，编辑&gt;首选项(ctrl+p)&gt;设备&gt;启用虚拟打印机</p>
+]]></content>
+      <categories>
+        <category>折腾docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>VMware</tag>
+      </tags>
+  </entry>
+</search>
