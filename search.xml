@@ -37,7 +37,7 @@
 <p>官方JS里借鉴的~~<br>注意这里插入按钮的CSS样式名字要与之前custom.styl里的CSS样式名字统一</p>
 <h3 id="第四步-导入JS"><a href="#第四步-导入JS" class="headerlink" title="第四步 导入JS"></a>第四步 导入JS</h3><p>我选择的导入方式比较麻烦，不过我喜欢<del>~</del><br>在themes\next\layout下新建custom-scripts.swig文件，内容如下</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"/js/custom.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>然后再在themes\next\layout_layout.swig的最后<strong></body></html>之前</strong>添加代码如下：</p>
+<p>然后再在themes\next\layout_layout.swig的最后<strong>&lt;//body&gt;&lt;//html&gt;之前</strong>添加代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!--Add--&gt;</span><br><span class="line">&#123;%- <span class="keyword">if</span> theme.custom.javascript %&#125;</span><br><span class="line">  &#123;% include <span class="string">'custom-scripts.swig'</span> %&#125;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>最后在<strong>主题配置文件</strong>最后追加代码</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line"># Add</span><br><span class="line"># Add Custom CSS &amp; JavaScript</span><br><span class="line">custom:</span><br><span class="line">  css: true </span><br><span class="line">  javascript: true</span><br></pre></td></tr></table></figure>
