@@ -1,12 +1,6 @@
 (function () {
     document.body.style.backgroundImage = "url(/images/background/" + (Math.ceil(Math.random() * 10)) % 8 + ".png)";
 
-    var info = document.querySelector('div.info');
-    while (info === null) {
-        info = document.querySelector('div.info');
-    }
-    info.remove();
-
     var link = document.querySelector('li.post-copyright-link');
     if (link) {
         link.insertAdjacentHTML('beforeend', '<div class="copy-link-btn"><i class="fa fa-clipboard"></i></div>');
