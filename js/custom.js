@@ -1,1 +1,43 @@
-!function(){document.body.style.backgroundImage="url(/images/background/"+Math.ceil(10*Math.random())%8+".png)";var l=document.querySelector("li.post-copyright-link");if(l){l.insertAdjacentHTML("beforeend",'<div class="copy-link-btn"><i class="fa fa-clipboard"></i></div>');var e=l.querySelector(".copy-link-btn");e.addEventListener("click",function(e){var t=l.querySelector("a").text,a=document.createElement("textarea");a.style.top=window.scrollY+"px",a.style.position="absolute",a.style.opacity="0",a.readOnly=!0,a.value=t,document.body.append(a);var n=document.getSelection(),o=0<n.rangeCount&&n.getRangeAt(0);a.select(),a.setSelectionRange(0,t.length),a.readOnly=!1;var c=document.execCommand("copy");l.querySelector("i").className=c?"fa fa-check":"fa fa-times",a.blur(),o&&(n.removeAllRanges(),n.addRange(o)),document.body.removeChild(a)}),e.addEventListener("mouseleave",function(e){setTimeout(function(){e.target.querySelector("i").className="fa fa-clipboard"},300)})}}();
+(function () {
+    document.body.style.backgroundImage = "url(/images/background/" + (Math.ceil(Math.random() * 10)) % 8 + ".png)";
+
+    var info = document.querySelector('div.info');
+    while (info === null) {
+        info = document.querySelector('div.info');
+    }
+    info.remove();
+
+    var link = document.querySelector('li.post-copyright-link');
+    if (link) {
+        link.insertAdjacentHTML('beforeend', '<div class="copy-link-btn"><i class="fa fa-clipboard"></i></div>');
+        var button = link.querySelector('.copy-link-btn');
+        button.addEventListener('click', event => {
+            var code = link.querySelector('a').text;
+            var ta = document.createElement('textarea');
+            ta.style.top = window.scrollY + 'px'; // Prevent page scrolling
+            ta.style.position = 'absolute';
+            ta.style.opacity = '0';
+            ta.readOnly = true;
+            ta.value = code;
+            document.body.append(ta);
+            const selection = document.getSelection();
+            const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+            ta.select();
+            ta.setSelectionRange(0, code.length);
+            ta.readOnly = false;
+            var result = document.execCommand('copy');
+            link.querySelector('i').className = result ? 'fa fa-check' : 'fa fa-times';
+            ta.blur(); // For iOS
+            if (selected) {
+                selection.removeAllRanges();
+                selection.addRange(selected);
+            }
+            document.body.removeChild(ta);
+        });
+        button.addEventListener('mouseleave', event => {
+            setTimeout(() => {
+                event.target.querySelector('i').className = 'fa fa-clipboard';
+            }, 300);
+        });
+    }
+})();
