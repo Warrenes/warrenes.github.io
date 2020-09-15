@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Scoop使用体验</title>
-    <url>/post/4bea155b/</url>
+    <url>/post/55364/</url>
     <content><![CDATA[<h2 id="写在前面的"><a href="#写在前面的" class="headerlink" title="写在前面的"></a>写在前面的</h2><p>太久没更新了，过来水水博客。这次的话就讲讲Scoop的简单使用体验吧吧。</p>
 <h2 id="Scoop介绍"><a href="#Scoop介绍" class="headerlink" title="Scoop介绍"></a>Scoop介绍</h2><p>我的笔记本的Bios被锁了大部分功能，没办法装Linux。<br>那么为了在Windows下获得比较舒服的使用体验，除了要注意文件管理外，还要一个合适的软件管理器来管理软件。（别说控制面板，太难用了，还要自己挨个更新。）<br>Scoop就是一个比较好用的软件管理器，类似Linux的包管理器。类似的还有<a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a>和<a href="https://docs.microsoft.com/zh-cn/windows/package-manager/winget/" target="_blank" rel="noopener">Winget</a>。<br>有一说一，微软拥抱开源后确实开了些好坑，不过能不能填好就不知道了（=。=）。</p>
 <h2 id="安装体验"><a href="#安装体验" class="headerlink" title="安装体验"></a>安装体验</h2><p>Scoop本身的安装还是挺友好的，就是要配置好文件目录。对于热门软件来说，比如Jetbrains全家桶（Jetbrains打钱），Git，GCC，7zip等等，甚至对于大部分开源软件都是好用的。但对于比较冷门的软件就不太行，当然，有版权的绝大部分不行。<br>然后就是安装速度，github用爱发电是真的难顶，推荐搭配科学上网食用。</p>
@@ -27,7 +27,7 @@
   </entry>
   <entry>
     <title>Hexo+NexT个人博客升级遇到的坑</title>
-    <url>/post/ff7ac57c/</url>
+    <url>/post/38257/</url>
     <content><![CDATA[<h2 id="写在前面的"><a href="#写在前面的" class="headerlink" title="写在前面的"></a>写在前面的</h2><p>你们可爱的博主大人又回来继续更新博客了，中间才3个月没有更新，在正常不过了，毕竟我可是要成为年更区、与作者比命长分舵的一只鸽子（大误）。好了，言归正传，本次带来的是我的个人博客的更新以及遇到的各种坑，为了防止我以后再次踩坑<del>（虽然这是必定的）</del>，所以特此留念。</p>
 <h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><p>为了让没有经历过本博客黑暗时代的童鞋们对本站有所了解，所以这里将更新或添加的内容列举一下下。</p>
 <ol>
@@ -80,7 +80,7 @@
   </entry>
   <entry>
     <title>WIN10+docker+VMware安装MySQL8.0</title>
-    <url>/post/6a6aac33/</url>
+    <url>/post/47162/</url>
     <content><![CDATA[<h2 id="写在前面的"><a href="#写在前面的" class="headerlink" title="写在前面的"></a>写在前面的</h2><p>docker对windows真的很不友好，所以早日脱坑，linux大法好<br>如果你还没有安装好docker，而你又刚好想用VMware来代替hyper-v或Visual box，那么推荐阅读我的<a href="https://wbink.github.io/2019/09/13/WIN10家庭版docker-vmware安装/#more" target="_blank" rel="noopener">这篇博文</a></p>
 <h2 id="建立MySQL数据文件夹"><a href="#建立MySQL数据文件夹" class="headerlink" title="建立MySQL数据文件夹"></a>建立MySQL数据文件夹</h2><p>在电脑里选一块风水宝地，建立一个文件夹用于保存MySQL的数据，名字最好是英文的，我建立了MySQL文件夹<br><img data-src="2.png" alt="" title="MySQL文件夹"></p>
 <p>然后在文件夹里建立三个文件夹如下，如果你自己命名，请注意之后的bash命令也要做相应修改<br><img data-src="3.png" alt="" title="MySQL文件夹内容"></p>
@@ -128,7 +128,7 @@
   </entry>
   <entry>
     <title>WIN10家庭版docker+VMware安装</title>
-    <url>/post/e1ce9d1f/</url>
+    <url>/post/5013/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>由于windows10家庭版没有hyper-v,而docker需要虚拟机支持，所以正常windows10家庭版是无法使用docker安装包安装。但天无绝人之路，可以通过一些操作来实现。</p>
 <h3 id="一些操作"><a href="#一些操作" class="headerlink" title="一些操作"></a>一些操作</h3><ul>
 <li>购买windows10专业版，<del>土豪请出门右转，谢谢</del></li>
