@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://warrenes.github.io/about/index.html</loc>
+    
+    <lastmod>2020-09-15T13:22:14.038Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://warrenes.github.io/post/38257/</loc>
     
     <lastmod>2020-01-22T08:06:02.720Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://warrenes.github.io/categories/index.html</loc>
     
     <lastmod>2020-01-03T16:50:12.636Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://warrenes.github.io/about/index.html</loc>
-    
-    <lastmod>2020-01-03T15:36:32.089Z</lastmod>
     
   </url>
   
